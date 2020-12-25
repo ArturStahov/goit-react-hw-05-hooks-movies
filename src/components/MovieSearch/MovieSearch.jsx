@@ -32,16 +32,16 @@ export default function MoviesSearch() {
   }, []);
 
   //возврат к просмотренному фильму
-  useEffect(() => {
-    if (!isFromDataState) {
-      return;
-    }
-    if (idItem && films.length > 0) {
-      const selector = `[data-type="${idItem}"]`;
-      const viewItem = document.querySelector(selector);
-      viewItem.scrollIntoView(false);
-    }
-  }, [films]);
+  // useEffect(() => {
+  //   if (!isFromDataState) {
+  //     return;
+  //   }
+  //   if (idItem && films.length > 0) {
+  //     const selector = `[data-type="${idItem}"]`;
+  //     const viewItem = document.querySelector(selector);
+  //     viewItem.scrollIntoView(false);
+  //   }
+  // }, [films]);
 
   //кешируем данные
   useEffect(() => {
