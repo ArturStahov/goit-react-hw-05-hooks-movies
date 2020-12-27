@@ -6,7 +6,7 @@ import PageNav from './components/PageNav/PageNav';
 import NotFound from './views/NotFound/NotFound';
 import Spinner from './components/Spiner/Spiner';
 import AnimationBackground from './components/AnimationBackground/AnimationBackground';
-import FilmReturnProvider from './components/FilmsReturnProvider';
+import FilmReturnProvider from './context/FilmsReturnProvider';
 
 const HomeView = lazy(() =>
   import('./views/HomePage/HomePage.js' /* webpackChunkName: "home-page" */),

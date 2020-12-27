@@ -1,9 +1,9 @@
 import { useState, useEffect, useContext } from 'react';
-import fetchApiSearch from '../../service/fetchApiSearch';
+import { searchMovie } from '../../service/fetchApi';
 import MoviesList from '../MoviesList/MoviesList';
 import FormSearch from './FormSearch/FormSearch';
 
-import FilmReturnContext from '../../service/context';
+import FilmReturnContext from '../../context/context';
 import PaginationViews from '../PaginationViews/PaginationViews';
 
 export default function MoviesSearch() {
@@ -32,16 +32,17 @@ export default function MoviesSearch() {
   }, []);
 
   //возврат к просмотренному фильму
-  // useEffect(() => {
-  //   if (!isFromDataState) {
-  //     return;
-  //   }
-  //   if (idItem && films.length > 0) {
-  //     const selector = `[data-type="${idItem}"]`;
-  //     const viewItem = document.querySelector(selector);
-  //     viewItem.scrollIntoView(false);
-  //   }
-  // }, [films]);
+  useEffect(() => {
+    if (!isFromDataState) {
+      return;
+    }
+    if (idItem && films.length > 0) {
+      const selector = `[data-type="${idItem}"]`;
+      const viewItem = document.querySelector(selector);
+      viewItem.scrollIntoView(false);
+      onClearState();
+    }
+  }, [films]);
 
   //кешируем данные
   useEffect(() => {
@@ -50,20 +51,16 @@ export default function MoviesSearch() {
     }
   }, [films, query, page]);
 
-  const fetchApi = () => {
-    fetchApiSearch(query, page).then(data => {
+  useEffect(() => {
+    if (!query) {
+      return;
+    }
+    searchMovie(query, page).then(data => {
       if (films.length < data.total_results) {
         setFilms(data.results);
         setDataTotal(data.total_results);
       }
     });
-  };
-
-  useEffect(() => {
-    if (!query) {
-      return;
-    }
-    fetchApi();
   }, [query, page]);
 
   const handlerSearchButton = queryInput => {

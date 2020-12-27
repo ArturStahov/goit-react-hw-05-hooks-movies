@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import fetchReview from '../../service/fetchReview';
+import { getReviewsDetails } from '../../service/fetchApi';
 import { ReviewItem, ListReview } from './styledComponent';
 import { useParams } from 'react-router-dom';
 
@@ -8,8 +8,8 @@ export default function ReviewBlocks() {
   const { movieID } = useParams();
 
   useEffect(() => {
-    fetchReview(movieID).then(data => setReview(data.results));
-  });
+    getReviewsDetails(movieID).then(data => setReview(data.results));
+  }, []);
 
   return (
     <>

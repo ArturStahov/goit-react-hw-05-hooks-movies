@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react';
-import fetchOneMovies from '../../service/fetchOneMovies';
+import { Route, useParams, useRouteMatch } from 'react-router-dom';
+import { getMovieDetails } from '../../service/fetchApi';
 import Section from '../../components/Section/Section';
 import OneMovieDetails from '../../components/OneMovieDetails/OneMovieDetails';
 import CastBlock from '../../components/CastBlock/CastBlock';
 import ReviewsBlocks from '../../components/ReviewsBlock/ReviewsBlock';
-import { Route, useParams, useRouteMatch } from 'react-router-dom';
 
 export default function OneMoviesPage() {
   const [movie, setMovie] = useState(null);
@@ -12,7 +12,7 @@ export default function OneMoviesPage() {
   const { path } = useRouteMatch();
 
   useEffect(() => {
-    fetchOneMovies(movieID).then(data => setMovie(data));
+    getMovieDetails(movieID).then(data => setMovie(data));
   }, []);
 
   return (

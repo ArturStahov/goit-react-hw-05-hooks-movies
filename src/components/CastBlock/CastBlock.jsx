@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import fetchCast from '../../service/fetchCast';
+import { getCastDetails } from '../../service/fetchApi';
 import createImgUrl from '../../service/createImgUrl';
 import DefaultImage from '../../img/default-image.jpg';
 import { ListCast, CastItem, CastImage } from './styledComponent';
@@ -10,8 +10,8 @@ export default function CastBlocks() {
   const { movieID } = useParams();
 
   useEffect(() => {
-    fetchCast(movieID).then(data => setCast(data.cast));
-  });
+    getCastDetails(movieID).then(data => setCast(data.cast));
+  }, []);
 
   return (
     <>

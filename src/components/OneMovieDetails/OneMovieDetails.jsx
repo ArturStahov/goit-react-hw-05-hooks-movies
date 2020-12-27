@@ -18,7 +18,7 @@ import {
 import createImgUrl from '../../service/createImgUrl';
 import { NavLink } from 'react-router-dom';
 import DefaultImage from '../../img/default-image.jpg';
-import FilmReturnContext from '../../service/context';
+import FilmReturnContext from '../../context/context';
 
 export default function OneMovieDetail({
   movie: { original_title, poster_path, release_date, overview, genres },
