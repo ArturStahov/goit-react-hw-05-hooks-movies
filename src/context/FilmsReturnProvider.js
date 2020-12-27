@@ -3,7 +3,6 @@ import FilmReturnContext from './context';
 
 export default function AuthProviders({ children }) {
   const [idItem, setIdItem] = useState(null);
-  const [filmsArr, setFilmsArr] = useState([]);
   const [querySearch, setQuerySearch] = useState('');
   const [pageNumber, setPageNumber] = useState(null);
   const [totalPage, setTotalPage] = useState(1);
