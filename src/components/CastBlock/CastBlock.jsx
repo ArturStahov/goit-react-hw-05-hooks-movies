@@ -10,7 +10,8 @@ export default function CastBlocks() {
   const { movieID } = useParams();
 
   useEffect(() => {
-    getCastDetails(movieID).then(data => setCast(data.cast));
+    let id = movieID && movieID.match(/[a-z0-9]+$/)[0]; // вытягуем с строки url сгенереной slug наш ид фильма
+    getCastDetails(id).then(data => setCast(data.cast));
   }, []);
 
   return (

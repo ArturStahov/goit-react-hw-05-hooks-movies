@@ -8,7 +8,8 @@ export default function ReviewBlocks() {
   const { movieID } = useParams();
 
   useEffect(() => {
-    getReviewsDetails(movieID).then(data => setReview(data.results));
+    let id = movieID && movieID.match(/[a-z0-9]+$/)[0]; // вытягуем с строки url сгенереной slug наш ид фильма
+    getReviewsDetails(id).then(data => setReview(data.results));
   }, []);
 
   return (
