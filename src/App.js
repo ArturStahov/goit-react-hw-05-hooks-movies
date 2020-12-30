@@ -1,4 +1,7 @@
 import { Suspense, lazy } from 'react';
+
+import { QueryClient, QueryClientProvider } from 'react-query';
+
 import { Switch, Route } from 'react-router-dom';
 import PageHeader from './components/PageHeader/PageHeader';
 import PageMain from './components/PageMain/PageMain';
@@ -21,7 +24,7 @@ const MoviesSearchView = lazy(() =>
     './components/MovieSearch/MovieSearch.jsx' /* webpackChunkName: "MoviesSearch" */
   ),
 );
-
+const queryClient = new QueryClient();
 export default function App() {
   return (
     <>
@@ -34,7 +37,9 @@ export default function App() {
           <Suspense fallback={<Spinner />}>
             <Switch>
               <Route exact path="/">
-                <HomeView />
+                <QueryClientProvider client={queryClient}>
+                  <HomeView />
+                </QueryClientProvider>
               </Route>
               <Route path="/movies/:movieID">
                 <OneMoviePageView />

@@ -1,4 +1,7 @@
 import { useState, useEffect, useContext } from 'react';
+
+import { useQuery } from 'react-query';
+
 import { getPopular } from '../../service/fetchApi';
 import MoviesList from '../../components/MoviesList/MoviesList';
 import { Title } from './StyledComponent';
@@ -11,6 +14,25 @@ export default function HomePage() {
     FilmReturnContext,
   );
 
+  useQuery('repoData', () => {
+    getPopular(page).then(data => {
+      if (!data) {
+        return;
+      }
+      setFilms(data.results);
+      console.log(data);
+    });
+  });
+
+  // useEffect(() => {
+  //   if (!data) {
+  //     return
+  //   }
+  //   setFilms(data.results);
+  //   console.log(data)
+
+  // }, [data]);
+
   useEffect(() => {
     getPopular(page).then(data => {
       if (films.length < data.total_results) {
@@ -19,7 +41,7 @@ export default function HomePage() {
     });
   }, []);
 
-  //возврат к просмотренному фильму
+  // возврат к просмотренному фильму
   useEffect(() => {
     if (!isFromDataState) {
       return;

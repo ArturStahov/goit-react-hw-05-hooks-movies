@@ -11,5 +11,6 @@ use libs :
 - three.js
 - AntDesign
 - slugify
+- react-query
 
 https://moviessearch26122020.netlify.app/

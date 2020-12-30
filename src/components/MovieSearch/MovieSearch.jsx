@@ -3,7 +3,6 @@ import { useLocation, useHistory } from 'react-router-dom';
 import { searchMovie } from '../../service/fetchApi';
 import MoviesList from '../MoviesList/MoviesList';
 import FormSearch from './FormSearch/FormSearch';
-
 import FilmReturnContext from '../../context/context';
 import PaginationViews from '../PaginationViews/PaginationViews';
 
