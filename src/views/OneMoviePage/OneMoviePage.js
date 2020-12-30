@@ -12,7 +12,10 @@ export default function OneMoviesPage() {
   const { path } = useRouteMatch();
 
   useEffect(() => {
-    getMovieDetails(movieID).then(data => setMovie(data));
+    let id = movieID && movieID.match(/[a-z0-9]+$/)[0]; // вытягуем с строки url сгенереной slug наш ид фильма
+    console.log(movieID);
+    console.log(id);
+    getMovieDetails(id).then(data => setMovie(data));
   }, []);
 
   return (

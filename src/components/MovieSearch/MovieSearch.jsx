@@ -1,4 +1,5 @@
 import { useState, useEffect, useContext } from 'react';
+import { useLocation, useHistory } from 'react-router-dom';
 import { searchMovie } from '../../service/fetchApi';
 import MoviesList from '../MoviesList/MoviesList';
 import FormSearch from './FormSearch/FormSearch';
@@ -20,6 +21,8 @@ export default function MoviesSearch() {
     idItem,
     totalPage,
   } = useContext(FilmReturnContext);
+  const location = useLocation();
+  const history = useHistory();
 
   //берем данные с кеша
   useEffect(() => {
@@ -74,6 +77,12 @@ export default function MoviesSearch() {
     setFilms([]);
     setPage(1);
     setQuery(queryInput);
+
+    history.push({
+      // записуем значения параметров запроса в адресноую строку
+      ...location,
+      search: `query=${queryInput.toLowerCase()}`,
+    });
   };
 
   const handlerPagination = page => {
