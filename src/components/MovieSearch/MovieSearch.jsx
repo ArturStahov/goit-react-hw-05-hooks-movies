@@ -42,7 +42,10 @@ export default function MoviesSearch() {
     if (idItem && films.length > 0) {
       const selector = `[data-type="${idItem}"]`;
       const viewItem = document.querySelector(selector);
-      viewItem.scrollIntoView(false);
+      if (viewItem) {
+        viewItem.scrollIntoView(false);
+      }
+
       onClearState();
     }
   }, [films]);
